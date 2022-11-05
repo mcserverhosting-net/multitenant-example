@@ -13,3 +13,4 @@ subjects:
   namespace: team-test
 #Grant the parent SA permission to modify resources in this namespace.
 #✗ Kustomization reconciliation failed: HelmRelease/sub-team/podinfo dry-run failed, reason: Forbidden, error: helmreleases.helm.toolkit.fluxcd.io "podinfo" is forbidden: User "system:serviceaccount:team-test:team-test" cannot patch resource "helmreleases" in API group "helm.toolkit.fluxcd.io" in the namespace "sub-team"
+#Note: Race condition
