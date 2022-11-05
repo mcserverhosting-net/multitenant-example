@@ -1,0 +1,23 @@
+#Note: This rolebinding is already created by the cluster operator. However it is shown here to alllow you to add subjects.
+#Ensure you always include an SA for HelmRelease and Kustomization deployments as they require a SA with appropriate permissions
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: team-test-admin
+  namespace: team-test
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- kind: ServiceAccount
+  name: team-test
+- apiGroup: rbac.authorization.k8s.io
+  kind: User
+  name: sfxworks@gmail.com
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: team-test
+  namespace: team-test
