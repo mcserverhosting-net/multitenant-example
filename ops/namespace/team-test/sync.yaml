@@ -8,4 +8,4 @@ spec:
   path: ops
   ref:
     branch: main
-  url: https://github.com/mcserverhosting.net/multitenant-example
+  url: https://github.com/mcserverhosting-net/multitenant-example
