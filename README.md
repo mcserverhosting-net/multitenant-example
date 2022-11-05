@@ -19,6 +19,29 @@ graph TD;
     SubTeam-->HelmDeployment;
 ```
 
+```sh
+[sam@sampc multitenant-example]$ kubectl get GitRepository -n team-test
+NAME        URL                                                            AGE   READY   STATUS
+team-test   ssh://git@github.com/mcserverhosting-net/multitenant-example   38m   True    stored artifact for revision 'main/c1c00408541671d195e59eee67a294d2b672a962'
+```
+
+```
+kubectl hns tree team-test
+team-test
+└── [s] sub-team
+
+[s] indicates subnamespaces
+```
+
+```sh
+[sam@sampc multitenant-example]$ kubectl get helmrelease,pods -n sub-team
+NAME                                         AGE   READY   STATUS
+helmrelease.helm.toolkit.fluxcd.io/podinfo   52s   True    Release reconciliation succeeded
+
+NAME                           READY   STATUS    RESTARTS   AGE
+pod/podinfo-5d4bcccb5c-lqh6x   1/1     Running   0          50s
+```
+
 Note, when utilizing HNC, one ***must*** manually create the RoleBindings for subnamespaces to allow flux to control them from a serviceaccount of the parent namespace. The objects can be managed thereafter via gitops.
 
 Note the example:
