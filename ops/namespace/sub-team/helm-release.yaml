@@ -15,7 +15,7 @@ metadata:
 spec:
   interval: 5m
   releaseName: podinfo
-  serviceAccountName: team-test #Required. Default to your parent namespace unless otherwise told by cluster operator.
+  serviceAccountName: team-test #Required
   chart:
     spec:
       chart: podinfo
