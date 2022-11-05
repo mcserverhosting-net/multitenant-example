@@ -1,15 +1,16 @@
 # Multitenant Example
 
-This repository attemps to serve as a guide on handling workloads as a tenant of the MCSH cluster.
+This repository attempts to serve as a guide on handling workloads as a tenant of the MCSH cluster.
 
 Please note the following:
 
-1. Your first namespace assigned. In this example, team-test is the namespace assigned.
-2. Your cluster-admin service account. This is a namespace scoped SA that is always rolled into sub namespaces. The name will be the same as your namespace. In this example, team-test is the SA assigned.
+1. Your first namespace is assigned. In this example, team-test is the namespace assigned.
+2. Your cluster-admin service account. This is a namespace-scoped SA. The name will be the same as your namespace. In this example, team-test is the SA assigned.
+_Note, this SA is used as an example to allow flux to control resources in child namespaces. Feel free to follow the same model or make your own SA/RB with the least permissions necessary for flux_
 
-In this example repo, the ops folder serves as a gitops referenced used by flux's multitenant system.
+In this example repo, the ops folder serves as a GitOps referenced used by flux's multitenant system.
 An HNC namespace named sub-team is created via the snsanchor definition inside team-test.
-Included is this folder is a helm chart that deploys pod-info.
+Included in this folder is a helm chart that deploys pod-info.
 
 ```mermaid
 graph TD;
@@ -42,7 +43,7 @@ NAME                           READY   STATUS    RESTARTS   AGE
 pod/podinfo-5d4bcccb5c-lqh6x   1/1     Running   0          50s
 ```
 
-Note, when utilizing HNC, one ***must*** manually create the RoleBindings for subnamespaces to allow flux to control them from a serviceaccount of the parent namespace. The objects can be managed thereafter via gitops.
+Note, when utilizing HNC, one ***must*** manually create the RoleBindings for subnamespaces to allow flux to control them from a serviceaccount of the parent namespace. The objects can be managed thereafter via GitOps.
 
 Note the example:
 
