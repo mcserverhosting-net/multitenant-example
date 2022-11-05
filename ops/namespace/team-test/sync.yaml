@@ -5,7 +5,22 @@ metadata:
   namespace: team-test
 spec:
   interval: 1m0s
-  path: ops
   ref:
     branch: main
-  url: https://github.com/mcserverhosting-net/multitenant-example
+  secretRef:
+    name: auth #flux create secret git auth -n team-test --url="ssh://git@github.com/mcserverhosting-net/multitenant-example" 
+  url: ssh://git@github.com/mcserverhosting-net/multitenant-example
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: team-test
+  namespace: team-test
+spec:
+  interval: 10m0s
+  serviceAccountName: team-test
+  path: ./ops
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
