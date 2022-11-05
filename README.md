@@ -8,7 +8,7 @@ Please note the following:
 2. Your cluster-admin service account. This is a namespace-scoped SA. The name will be the same as your namespace. In this example, team-test is the SA assigned.
 _Note, this SA is used as an example to allow flux to control resources in child namespaces. Feel free to follow the same model or make your own SA/RB with the least permissions necessary for flux_
 
-In this example repo, the ops folder serves as a GitOps referenced used by flux's multitenant system.
+In this example repo, the ops folder serves as a GitOps reference used by flux's multitenant system.
 An HNC namespace named sub-team is created via the snsanchor definition inside team-test.
 Included in this folder is a helm chart that deploys pod-info.
 
